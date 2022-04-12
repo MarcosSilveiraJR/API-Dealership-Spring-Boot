@@ -2,15 +2,13 @@ package com.dealership.apispringbootdealership.controller.motorbike;
 
 import com.dealership.apispringbootdealership.controller.model.request.MotorbikeControllerRequest;
 import com.dealership.apispringbootdealership.controller.model.response.MotorbikeControllerResponse;
-import com.dealership.apispringbootdealership.service.model.request.MotorbikeServiceRequest;
-import com.dealership.apispringbootdealership.service.model.response.MotorbikeServiceResponse;
+import com.dealership.apispringbootdealership.service.motorbike.model.request.MotorbikeServiceRequest;
+import com.dealership.apispringbootdealership.service.motorbike.model.response.MotorbikeServiceResponse;
 import com.dealership.apispringbootdealership.service.motorbike.MotorbikeFacade;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.dealership.apispringbootdealership.controller.mapper.request.MotorbikeControllerRequestMapper.toMotorbikeServiceRequest;
 import static com.dealership.apispringbootdealership.controller.mapper.response.MotorbikeControllerResponseMapper.toMotorbikeServiceResponse;

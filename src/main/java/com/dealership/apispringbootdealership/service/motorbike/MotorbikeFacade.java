@@ -1,7 +1,7 @@
 package com.dealership.apispringbootdealership.service.motorbike;
 
-import com.dealership.apispringbootdealership.service.model.request.MotorbikeServiceRequest;
-import com.dealership.apispringbootdealership.service.model.response.MotorbikeServiceResponse;
+import com.dealership.apispringbootdealership.service.motorbike.model.request.MotorbikeServiceRequest;
+import com.dealership.apispringbootdealership.service.motorbike.model.response.MotorbikeServiceResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

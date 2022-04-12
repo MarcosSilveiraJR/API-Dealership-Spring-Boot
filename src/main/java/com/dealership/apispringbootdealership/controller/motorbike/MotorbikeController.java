@@ -2,7 +2,6 @@ package com.dealership.apispringbootdealership.controller.motorbike;
 
 import com.dealership.apispringbootdealership.controller.model.request.MotorbikeControllerRequest;
 import com.dealership.apispringbootdealership.controller.model.response.MotorbikeControllerResponse;
-import com.dealership.apispringbootdealership.entity.Address;
 import com.dealership.apispringbootdealership.service.motorbike.MotorbikeService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -71,9 +70,9 @@ public class MotorbikeController {
         return userId;
     }
 
-    @GetMapping("/cep/{cep}")
-    public Address getAddress(@PathVariable String cep){
-        return service.getAddress(cep);
-    }
+//    @GetMapping("/cep/{cep}")
+//    public AddressEntity getAddress(@PathVariable String cep){
+//        return service.getAddress(cep);
+//    }
 
 }

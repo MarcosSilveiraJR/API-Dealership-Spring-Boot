@@ -1,7 +1,7 @@
 package com.dealership.apispringbootdealership.controller.mapper.request;
 
 import com.dealership.apispringbootdealership.controller.model.request.MotorbikeControllerRequest;
-import com.dealership.apispringbootdealership.service.model.request.MotorbikeServiceRequest;
+import com.dealership.apispringbootdealership.service.motorbike.model.request.MotorbikeServiceRequest;
 
 public class MotorbikeControllerRequestMapper {
 
