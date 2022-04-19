@@ -1,8 +1,9 @@
 package com.dealership.apispringbootdealership.controller.motorbike;
 
-import com.dealership.apispringbootdealership.controller.model.request.MotorbikeControllerRequest;
-import com.dealership.apispringbootdealership.controller.model.response.MotorbikeControllerResponse;
-import com.dealership.apispringbootdealership.service.motorbike.MotorbikeService;
+import com.dealership.apispringbootdealership.controller.motorbike.model.request.MotorbikeControllerRequest;
+import com.dealership.apispringbootdealership.controller.motorbike.model.response.MotorbikeControllerResponse;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,12 +17,14 @@ import static org.springframework.http.HttpStatus.*;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/v1/motorbike")
+@Api(value = "Api Rest Dealership")
+@CrossOrigin(origins = "*")
 public class MotorbikeController {
 
     private final MotorbikeControllerFacade facade;
-    private final MotorbikeService service;
 
     @PostMapping
+    @ApiOperation(value = "Salva uma moto no banco de dados")
     @ResponseStatus(CREATED)
     public MotorbikeControllerResponse save(@RequestBody @Valid MotorbikeControllerRequest motorbikeControllerRequest) {
         return facade.save(motorbikeControllerRequest);
@@ -69,10 +72,5 @@ public class MotorbikeController {
             @CookieValue(name = "user-id", defaultValue = "default-user-id") String userId) {
         return userId;
     }
-
-//    @GetMapping("/cep/{cep}")
-//    public AddressEntity getAddress(@PathVariable String cep){
-//        return service.getAddress(cep);
-//    }
 
 }

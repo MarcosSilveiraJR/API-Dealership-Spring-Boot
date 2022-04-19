@@ -3,7 +3,7 @@ package com.dealership.apispringbootdealership.service.motorbike;
 import com.dealership.apispringbootdealership.entity.MotorbikeEntity;
 import com.dealership.apispringbootdealership.exceptions.notfound.NotFoundException;
 import com.dealership.apispringbootdealership.repository.MotorbikeRepository;
-import com.dealership.apispringbootdealership.service.mapper.motorbike.response.MotorbikeServiceResponseMapper;
+import com.dealership.apispringbootdealership.service.motorbike.mapper.response.MotorbikeServiceResponseMapper;
 import com.dealership.apispringbootdealership.service.motorbike.model.request.MotorbikeServiceRequest;
 import com.dealership.apispringbootdealership.service.motorbike.model.response.MotorbikeServiceResponse;
 import lombok.AllArgsConstructor;
@@ -11,20 +11,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.dealership.apispringbootdealership.service.mapper.motorbike.request.MotorbikeServiceRequestMapper.toEntityMotorbike;
-import static com.dealership.apispringbootdealership.service.mapper.motorbike.response.MotorbikeServiceResponseMapper.toMotorbikeServiceResponse;
+import static com.dealership.apispringbootdealership.service.motorbike.mapper.request.MotorbikeServiceRequestMapper.toEntityMotorbike;
+import static com.dealership.apispringbootdealership.service.motorbike.mapper.response.MotorbikeServiceResponseMapper.toMotorbikeServiceResponse;
 
 @AllArgsConstructor
 @Service
-public class MotorbikeService {
+public class MotorbikeService  {
 
     public static final String NOT_FOUND = " Not Found";
-    private final MotorbikeRepository repository;
+    public final MotorbikeRepository repository;
 
     public MotorbikeServiceResponse save(MotorbikeServiceRequest motorbikeServiceRequest) {
-        MotorbikeEntity motorbikeEntity = toEntityMotorbike(motorbikeServiceRequest);
-        MotorbikeEntity save = repository.save(motorbikeEntity);
-        return toMotorbikeServiceResponse(save);
+        return toMotorbikeServiceResponse(repository.save(toEntityMotorbike(motorbikeServiceRequest)));
     }
 
     public MotorbikeServiceResponse update(MotorbikeServiceRequest motorbikeServiceRequest, String id) {
@@ -42,7 +40,7 @@ public class MotorbikeService {
             repository.deleteById(id);
         else if (id.equals(allMotorbikes)) {
             repository.deleteAll();
-        } else throw new NotFoundException("ID " + id + " nonexistent");
+        } else throw new NotFoundException("ID " + id + " Nonexistent");
     }
 
     public MotorbikeServiceResponse getById(String id) {
