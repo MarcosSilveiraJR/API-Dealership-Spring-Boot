@@ -20,11 +20,4 @@ public class RestTemplateConfiguration {
 
     }
 
-    @Bean
-    public RestTemplate viaCep1() {
-        return new RestTemplateBuilder()
-                .rootUri("https://viacep.com.br/")
-                .build();
-    }
-
 }

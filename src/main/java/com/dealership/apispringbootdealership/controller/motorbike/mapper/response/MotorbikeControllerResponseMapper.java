@@ -7,7 +7,7 @@ import java.util.List;
 
 public class MotorbikeControllerResponseMapper {
 
-    public static MotorbikeControllerResponse toMotorbikeServiceResponse(MotorbikeServiceResponse motorbikeServiceResponse) {
+    public static MotorbikeControllerResponse toMotorbikeControllerResponse(MotorbikeServiceResponse motorbikeServiceResponse) {
         return MotorbikeControllerResponse.builder()
                 .id(motorbikeServiceResponse.getId())
                 .brand(motorbikeServiceResponse.getBrand())

@@ -2,7 +2,6 @@ package com.dealership.apispringbootdealership.controller.motorbike;
 
 import com.dealership.apispringbootdealership.controller.motorbike.model.request.MotorbikeControllerRequest;
 import com.dealership.apispringbootdealership.controller.motorbike.model.response.MotorbikeControllerResponse;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +16,6 @@ import static org.springframework.http.HttpStatus.*;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/v1/motorbike")
-@Api(value = "Api Rest Dealership")
-@CrossOrigin(origins = "*")
 public class MotorbikeController {
 
     private final MotorbikeControllerFacade facade;
@@ -31,6 +28,7 @@ public class MotorbikeController {
     }
 
     @PostMapping("/cookies")
+    @ApiOperation(value = "Salva um Cookie")
     public String setCookie(HttpServletResponse response){
         Cookie cookie = new Cookie("id", "1");
         cookie.setMaxAge(7 * 24 * 60 * 60);
@@ -43,7 +41,8 @@ public class MotorbikeController {
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(NO_CONTENT)
+    @ResponseStatus(OK)
+    @ApiOperation("Altera as características da de uma moto pelo ID")
     public MotorbikeControllerResponse update(@RequestBody MotorbikeControllerRequest motorbikeControllerRequest,
                                               @PathVariable String id) {
         return facade.update(motorbikeControllerRequest, id);
@@ -51,23 +50,27 @@ public class MotorbikeController {
 
     @DeleteMapping
     @ResponseStatus(NO_CONTENT)
+    @ApiOperation("Deleta uma moto do banco de dados")
     public void delete(@RequestParam String id) {
         facade.delete(id);
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(OK)
+    @ApiOperation("Retorna uma moto do banco de dados")
     public MotorbikeControllerResponse getById(@PathVariable String id) {
         return facade.getById(id);
     }
 
     @GetMapping
     @ResponseStatus(OK)
+    @ApiOperation("Retorna todas as motos do banco de dados")
     public List<MotorbikeControllerResponse> findAll() {
         return facade.findAll();
     }
 
     @GetMapping("/read-spring-cookie")
+    @ApiOperation("Retorna o cookie salvo")
     public String readCookie(
             @CookieValue(name = "user-id", defaultValue = "default-user-id") String userId) {
         return userId;

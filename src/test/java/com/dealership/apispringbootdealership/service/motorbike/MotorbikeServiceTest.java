@@ -4,7 +4,6 @@ import com.dealership.apispringbootdealership.entity.MotorbikeEntity;
 import com.dealership.apispringbootdealership.repository.MotorbikeRepository;
 import com.dealership.apispringbootdealership.service.motorbike.model.request.MotorbikeServiceRequest;
 import com.dealership.apispringbootdealership.service.motorbike.model.response.MotorbikeServiceResponse;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,7 +14,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -159,37 +159,6 @@ class MotorbikeServiceTest {
         when(repository.findAll()).thenReturn(entities);
         List<MotorbikeServiceResponse> actual = service.findAll();
         assertEquals(expected, actual);
-    }
-
-    private static class Start {
-
-            MotorbikeEntity entity = MotorbikeEntity.builder()
-                    .id("6255a099c35196358df03b44")
-                    .brand("Honda")
-                    .model("CB 600")
-                    .color("Preta")
-                    .price(BigDecimal.valueOf(22.000))
-                    .year(2012)
-                    .build();
-
-            MotorbikeServiceRequest request = MotorbikeServiceRequest.builder()
-                    .id("6255a099c35196358df03b44")
-                    .brand("Honda")
-                    .model("CB 600")
-                    .color("Preta")
-                    .price(BigDecimal.valueOf(22.000))
-                    .year(2012)
-                    .build();
-
-            MotorbikeServiceResponse expected = MotorbikeServiceResponse.builder()
-                    .id("6255a099c35196358df03b44")
-                    .brand("Honda")
-                    .model("CB 600")
-                    .color("Preta")
-                    .price(BigDecimal.valueOf(22.000))
-                    .year(2012)
-                    .build();
-
     }
 
 }
