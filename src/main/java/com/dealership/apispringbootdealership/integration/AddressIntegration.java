@@ -13,14 +13,4 @@ public class AddressIntegration {
         return restTemplate.getForObject("/ws/" + cep + "/json/", AddressIntegrationResponse.class);
     }
 
-
-//    public ASResponse get(ASRequest)
-//        getcep(ASReq->AIRe)
-//        save(AIresponse->Entity)
-//        Map(Entity->ASResp)
-//    public List<AddressEntity> getListaCep() {
-//        return Arrays.stream(Objects.requireNonNull(restTemplate1.getForObject("/ws/" + "/json/", AddressEntity[].class)))
-//                .toList();a
-//    }
-
 }
