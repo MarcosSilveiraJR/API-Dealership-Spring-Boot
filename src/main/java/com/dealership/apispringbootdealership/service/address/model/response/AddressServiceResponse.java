@@ -5,10 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Data
-@Builder
 public class AddressServiceResponse {
+    private String id;
     private String cep;
     private String logradouro;
     private String complemento;

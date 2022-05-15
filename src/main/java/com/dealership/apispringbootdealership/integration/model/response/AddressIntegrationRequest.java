@@ -7,14 +7,8 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Data
-public class AddressIntegrationResponse {
-    private String id;
+@Builder
+public class AddressIntegrationRequest {
     private String cep;
-    private String logradouro;
-    private String complemento;
-    private String bairro;
-    private String localidade;
-    private String uf;
 }

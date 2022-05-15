@@ -10,5 +10,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AddressServiceRequest {
     private String cep;
-
+    private String logradouro;
+    private String complemento;
+    private String bairro;
+    private String localidade;
+    private String uf;
 }

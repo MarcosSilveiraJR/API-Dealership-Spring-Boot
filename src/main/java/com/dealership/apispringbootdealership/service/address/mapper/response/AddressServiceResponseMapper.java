@@ -7,15 +7,30 @@ import com.dealership.apispringbootdealership.integration.model.response.Address
 
 public class AddressServiceResponseMapper {
 
-    public static AddressIntegrationResponse toAddressEntity(AddressEntity addressEntity){
+    public static AddressIntegrationResponse toAddressResponse(AddressEntity addressEntity) {
         return AddressIntegrationResponse.builder()
-                        .cep(addressEntity.getCep())
-                        .bairro(addressEntity.getBairro())
-                        .complemento(addressEntity.getComplemento())
-                        .bairro(addressEntity.getBairro())
-                        .localidade(addressEntity.getLocalidade())
-                        .uf(addressEntity.getUf())
-                        .build();
+                .id(addressEntity.getId())
+                .cep(addressEntity.getCep())
+                .bairro(addressEntity.getBairro())
+                .complemento(addressEntity.getComplemento())
+                .bairro(addressEntity.getBairro())
+                .localidade(addressEntity.getLocalidade())
+                .logradouro(addressEntity.getLogradouro())
+                .uf(addressEntity.getUf())
+                .build();
+    }
+
+    public static AddressEntity toEntity(AddressIntegrationResponse response) {
+        return AddressEntity.builder()
+                .id(response.getId())
+                .cep(response.getCep())
+                .bairro(response.getBairro())
+                .complemento(response.getComplemento())
+                .bairro(response.getBairro())
+                .localidade(response.getLocalidade())
+                .logradouro(response.getLogradouro())
+                .uf(response.getUf())
+                .build();
     }
 
 }
