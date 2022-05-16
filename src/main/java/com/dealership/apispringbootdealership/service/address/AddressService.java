@@ -1,7 +1,6 @@
 package com.dealership.apispringbootdealership.service.address;
 
 import com.dealership.apispringbootdealership.entity.AddressEntity;
-import com.dealership.apispringbootdealership.entity.model.address.request.AddressRequest;
 import com.dealership.apispringbootdealership.integration.AddressIntegration;
 import com.dealership.apispringbootdealership.integration.model.response.AddressIntegrationResponse;
 import com.dealership.apispringbootdealership.repository.AddressRepository;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.dealership.apispringbootdealership.service.address.mapper.response.AddressServiceResponseMapper.toAddressResponse;
 import static com.dealership.apispringbootdealership.service.address.mapper.response.AddressServiceResponseMapper.toEntity;
 import static java.util.stream.Collectors.toList;
 
@@ -21,9 +21,10 @@ public class AddressService {
     private final AddressIntegration addressIntegration;
     private final AddressRepository repository;
 
-    public AddressEntity saveCep(String cep) {
+    public AddressIntegrationResponse saveCep(String cep) {
         AddressEntity response = toEntity(getCep(cep));
-        return repository.save(response);
+        repository.save(response);
+        return toAddressResponse(response);
     }
 
     public AddressIntegrationResponse getCep(String cep) {
@@ -31,9 +32,9 @@ public class AddressService {
 
     }
 
-    public AddressIntegrationResponse findCep(AddressRequest id) {
-        repository.findById(id.getCep());
-        return addressIntegration.getCep(id.getCep());
+    public AddressIntegrationResponse findByCep(String cep) {
+        AddressEntity response = repository.findByCep(cep);
+        return  toAddressResponse(response);
     }
 
     public List<AddressIntegrationResponse> findAll() {

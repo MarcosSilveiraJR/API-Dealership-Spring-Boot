@@ -1,7 +1,5 @@
 package com.dealership.apispringbootdealership.controller.address;
 
-import com.dealership.apispringbootdealership.entity.AddressEntity;
-import com.dealership.apispringbootdealership.entity.model.address.request.AddressRequest;
 import com.dealership.apispringbootdealership.integration.model.response.AddressIntegrationResponse;
 import com.dealership.apispringbootdealership.service.address.AddressService;
 import io.swagger.annotations.Api;
@@ -23,9 +21,9 @@ public class AddressController {
         return addressService.getCep(cep);
     }
 
-    @GetMapping("/id/{id}")
-    public AddressIntegrationResponse findCep(@PathVariable AddressRequest id){
-        return addressService.findCep(id);
+    @GetMapping("/id/{cep}")
+    public AddressIntegrationResponse findCep(@PathVariable String cep){
+        return addressService.findByCep(cep);
     }
 
     @GetMapping("/all")
@@ -34,7 +32,7 @@ public class AddressController {
     }
 
     @GetMapping("/salvar/{cep}")
-    public AddressEntity salvaCep(@PathVariable String cep){
+    public AddressIntegrationResponse salvaCep(@PathVariable String cep){
         return addressService.saveCep(cep);
     }
 
