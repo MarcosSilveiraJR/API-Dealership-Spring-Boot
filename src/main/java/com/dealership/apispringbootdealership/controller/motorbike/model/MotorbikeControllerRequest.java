@@ -1,4 +1,4 @@
-package com.dealership.apispringbootdealership.controller.motorbike.model.response;
+package com.dealership.apispringbootdealership.controller.motorbike.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Builder
 @Data
-public class MotorbikeControllerResponse {
+public class MotorbikeControllerRequest {
     private String id;
     private String brand;
     private String model;

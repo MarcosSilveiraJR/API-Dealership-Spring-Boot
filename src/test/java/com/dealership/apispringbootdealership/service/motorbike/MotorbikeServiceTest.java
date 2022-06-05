@@ -2,8 +2,8 @@ package com.dealership.apispringbootdealership.service.motorbike;
 
 import com.dealership.apispringbootdealership.entity.MotorbikeEntity;
 import com.dealership.apispringbootdealership.repository.MotorbikeRepository;
-import com.dealership.apispringbootdealership.service.motorbike.model.request.MotorbikeServiceRequest;
-import com.dealership.apispringbootdealership.service.motorbike.model.response.MotorbikeServiceResponse;
+import com.dealership.apispringbootdealership.service.motorbike.model.MotorbikeServiceRequest;
+import com.dealership.apispringbootdealership.service.motorbike.model.MotorbikeServiceResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

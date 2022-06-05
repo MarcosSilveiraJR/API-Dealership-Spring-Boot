@@ -1,7 +1,7 @@
-package com.dealership.apispringbootdealership.controller.motorbike.mapper.response;
+package com.dealership.apispringbootdealership.controller.motorbike.mapper;
 
-import com.dealership.apispringbootdealership.controller.motorbike.model.response.MotorbikeControllerResponse;
-import com.dealership.apispringbootdealership.service.motorbike.model.response.MotorbikeServiceResponse;
+import com.dealership.apispringbootdealership.controller.motorbike.model.MotorbikeControllerResponse;
+import com.dealership.apispringbootdealership.service.motorbike.model.MotorbikeServiceResponse;
 
 import java.util.List;
 

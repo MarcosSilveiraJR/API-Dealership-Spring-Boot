@@ -1,7 +1,7 @@
-package com.dealership.apispringbootdealership.controller.motorbike.mapper.request;
+package com.dealership.apispringbootdealership.controller.motorbike.mapper;
 
-import com.dealership.apispringbootdealership.controller.motorbike.model.request.MotorbikeControllerRequest;
-import com.dealership.apispringbootdealership.service.motorbike.model.request.MotorbikeServiceRequest;
+import com.dealership.apispringbootdealership.controller.motorbike.model.MotorbikeControllerRequest;
+import com.dealership.apispringbootdealership.service.motorbike.model.MotorbikeServiceRequest;
 
 public class MotorbikeControllerRequestMapper {
 

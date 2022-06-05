@@ -1,8 +1,8 @@
-package com.dealership.apispringbootdealership.service.motorbike.mapper.response;
+package com.dealership.apispringbootdealership.service.motorbike.mapper;
 
 
 import com.dealership.apispringbootdealership.entity.MotorbikeEntity;
-import com.dealership.apispringbootdealership.service.motorbike.model.response.MotorbikeServiceResponse;
+import com.dealership.apispringbootdealership.service.motorbike.model.MotorbikeServiceResponse;
 
 public class MotorbikeServiceResponseMapper {
 

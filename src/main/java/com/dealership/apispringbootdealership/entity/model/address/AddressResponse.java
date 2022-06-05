@@ -1,4 +1,4 @@
-package com.dealership.apispringbootdealership.integration.model.response;
+package com.dealership.apispringbootdealership.entity.model.address;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,10 +7,9 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Data
-public class AddressIntegrationResponse {
-    private String id;
+@Builder
+public class AddressResponse {
     private String cep;
     private String logradouro;
     private String complemento;

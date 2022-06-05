@@ -1,7 +1,7 @@
 package com.dealership.apispringbootdealership.controller.motorbike;
 
-import com.dealership.apispringbootdealership.controller.motorbike.model.request.MotorbikeControllerRequest;
-import com.dealership.apispringbootdealership.controller.motorbike.model.response.MotorbikeControllerResponse;
+import com.dealership.apispringbootdealership.controller.motorbike.model.MotorbikeControllerRequest;
+import com.dealership.apispringbootdealership.controller.motorbike.model.MotorbikeControllerResponse;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

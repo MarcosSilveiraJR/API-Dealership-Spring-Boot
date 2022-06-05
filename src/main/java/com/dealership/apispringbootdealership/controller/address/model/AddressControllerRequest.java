@@ -1,5 +1,4 @@
-package com.dealership.apispringbootdealership.entity.model.address.request;
-
+package com.dealership.apispringbootdealership.controller.address.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,12 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class AddressRequest {
+public class AddressControllerRequest {
     private String cep;
     private String logradouro;
     private String complemento;
     private String bairro;
     private String localidade;
     private String uf;
-
 }

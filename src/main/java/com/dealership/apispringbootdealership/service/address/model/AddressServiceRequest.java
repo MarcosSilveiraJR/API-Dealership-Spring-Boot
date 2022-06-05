@@ -1,5 +1,4 @@
-package com.dealership.apispringbootdealership.entity.model.address.response;
-
+package com.dealership.apispringbootdealership.service.address.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class AddressResponse {
+public class AddressServiceRequest {
     private String cep;
     private String logradouro;
     private String complemento;

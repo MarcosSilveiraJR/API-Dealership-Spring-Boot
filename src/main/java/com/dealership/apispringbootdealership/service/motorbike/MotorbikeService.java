@@ -3,16 +3,16 @@ package com.dealership.apispringbootdealership.service.motorbike;
 import com.dealership.apispringbootdealership.entity.MotorbikeEntity;
 import com.dealership.apispringbootdealership.exceptions.notfound.NotFoundException;
 import com.dealership.apispringbootdealership.repository.MotorbikeRepository;
-import com.dealership.apispringbootdealership.service.motorbike.mapper.response.MotorbikeServiceResponseMapper;
-import com.dealership.apispringbootdealership.service.motorbike.model.request.MotorbikeServiceRequest;
-import com.dealership.apispringbootdealership.service.motorbike.model.response.MotorbikeServiceResponse;
+import com.dealership.apispringbootdealership.service.motorbike.mapper.MotorbikeServiceResponseMapper;
+import com.dealership.apispringbootdealership.service.motorbike.model.MotorbikeServiceRequest;
+import com.dealership.apispringbootdealership.service.motorbike.model.MotorbikeServiceResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.dealership.apispringbootdealership.service.motorbike.mapper.request.MotorbikeServiceRequestMapper.toEntityMotorbike;
-import static com.dealership.apispringbootdealership.service.motorbike.mapper.response.MotorbikeServiceResponseMapper.toMotorbikeServiceResponse;
+import static com.dealership.apispringbootdealership.service.motorbike.mapper.MotorbikeServiceRequestMapper.toEntityMotorbike;
+import static com.dealership.apispringbootdealership.service.motorbike.mapper.MotorbikeServiceResponseMapper.toMotorbikeServiceResponse;
 
 @AllArgsConstructor
 @Service

@@ -1,4 +1,4 @@
-package com.dealership.apispringbootdealership.service.motorbike.model.response;
+package com.dealership.apispringbootdealership.service.motorbike.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

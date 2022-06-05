@@ -1,4 +1,4 @@
-package com.dealership.apispringbootdealership.service.address.model.response;
+package com.dealership.apispringbootdealership.service.address.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

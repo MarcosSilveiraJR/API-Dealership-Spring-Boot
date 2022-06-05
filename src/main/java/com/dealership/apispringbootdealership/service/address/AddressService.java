@@ -2,17 +2,16 @@ package com.dealership.apispringbootdealership.service.address;
 
 import com.dealership.apispringbootdealership.entity.AddressEntity;
 import com.dealership.apispringbootdealership.integration.AddressIntegration;
-import com.dealership.apispringbootdealership.integration.model.response.AddressIntegrationResponse;
+import com.dealership.apispringbootdealership.integration.model.AddressIntegrationResponse;
 import com.dealership.apispringbootdealership.repository.AddressRepository;
-import com.dealership.apispringbootdealership.service.address.mapper.response.AddressServiceResponseMapper;
+import com.dealership.apispringbootdealership.service.address.mapper.AddressServiceResponseMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.dealership.apispringbootdealership.service.address.mapper.response.AddressServiceResponseMapper.toAddressResponse;
-import static com.dealership.apispringbootdealership.service.address.mapper.response.AddressServiceResponseMapper.toEntity;
-import static java.util.stream.Collectors.toList;
+import static com.dealership.apispringbootdealership.service.address.mapper.AddresServiceRequestMapper.toEntity;
+import static com.dealership.apispringbootdealership.service.address.mapper.AddressServiceResponseMapper.toAddressResponse;
 
 @AllArgsConstructor
 @Service
@@ -39,7 +38,7 @@ public class AddressService {
 
     public List<AddressIntegrationResponse> findAll() {
         return repository.findAll().stream().map(AddressServiceResponseMapper::toAddressResponse)
-                .collect(toList());
+                .toList();
     }
 
     public void deleteAll(){

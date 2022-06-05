@@ -1,7 +1,7 @@
-package com.dealership.apispringbootdealership.service.motorbike.mapper.request;
+package com.dealership.apispringbootdealership.service.motorbike.mapper;
 
 import com.dealership.apispringbootdealership.entity.MotorbikeEntity;
-import com.dealership.apispringbootdealership.service.motorbike.model.request.MotorbikeServiceRequest;
+import com.dealership.apispringbootdealership.service.motorbike.model.MotorbikeServiceRequest;
 
 public class MotorbikeServiceRequestMapper {
 

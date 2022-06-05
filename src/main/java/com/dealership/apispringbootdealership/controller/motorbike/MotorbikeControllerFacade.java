@@ -1,21 +1,24 @@
 package com.dealership.apispringbootdealership.controller.motorbike;
 
-import com.dealership.apispringbootdealership.controller.motorbike.model.request.MotorbikeControllerRequest;
-import com.dealership.apispringbootdealership.controller.motorbike.model.response.MotorbikeControllerResponse;
-import com.dealership.apispringbootdealership.service.motorbike.MotorbikeFacade;
-import com.dealership.apispringbootdealership.service.motorbike.model.request.MotorbikeServiceRequest;
-import com.dealership.apispringbootdealership.service.motorbike.model.response.MotorbikeServiceResponse;
+import com.dealership.apispringbootdealership.controller.motorbike.model.MotorbikeControllerRequest;
+import com.dealership.apispringbootdealership.controller.motorbike.model.MotorbikeControllerResponse;
+import com.dealership.apispringbootdealership.service.motorbike.MotorbikeServiceFacade;
+import com.dealership.apispringbootdealership.service.motorbike.model.MotorbikeServiceRequest;
+import com.dealership.apispringbootdealership.service.motorbike.model.MotorbikeServiceResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static com.dealership.apispringbootdealership.controller.motorbike.mapper.request.MotorbikeControllerRequestMapper.toMotorbikeServiceRequest;
-import static com.dealership.apispringbootdealership.controller.motorbike.mapper.response.MotorbikeControllerResponseMapper.toMotorbikeControllerResponse;
-import static com.dealership.apispringbootdealership.controller.motorbike.mapper.response.MotorbikeControllerResponseMapper.toMotorbikeServiceResponseList;
+import static com.dealership.apispringbootdealership.controller.motorbike.mapper.MotorbikeControllerRequestMapper.toMotorbikeServiceRequest;
+import static com.dealership.apispringbootdealership.controller.motorbike.mapper.MotorbikeControllerResponseMapper.toMotorbikeControllerResponse;
+import static com.dealership.apispringbootdealership.controller.motorbike.mapper.MotorbikeControllerResponseMapper.toMotorbikeServiceResponseList;
 
-
+@AllArgsConstructor
 @Component
-public record MotorbikeControllerFacade(MotorbikeFacade facade) {
+public final class MotorbikeControllerFacade {
+    private final MotorbikeServiceFacade facade;
+
 
     public MotorbikeControllerResponse save(MotorbikeControllerRequest motorbikeControllerRequest) {
         MotorbikeServiceRequest serviceRequest = toMotorbikeServiceRequest(motorbikeControllerRequest);
@@ -41,7 +44,6 @@ public record MotorbikeControllerFacade(MotorbikeFacade facade) {
     public void delete(String id) {
         facade.delete(id);
     }
-
 
 }
 
