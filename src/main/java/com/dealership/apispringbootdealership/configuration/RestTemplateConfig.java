@@ -1,4 +1,4 @@
-package com.dealership.apispringbootdealership.configuration.resttemplate;
+package com.dealership.apispringbootdealership.configuration;
 
 import com.dealership.apispringbootdealership.exceptions.restexception.RestTemplateException;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @AllArgsConstructor
-public class RestTemplateConfiguration {
+public class RestTemplateConfig {
 
     @Bean
     public RestTemplate viaCep() {

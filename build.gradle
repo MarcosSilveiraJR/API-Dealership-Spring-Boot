@@ -29,11 +29,13 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
-    testImplementation 'org.mockito:mockito-core:4.5.1'
+    testImplementation 'org.mockito:mockito-core:4.6.1'
     testImplementation 'junit:junit:4.13.2'
     implementation "io.springfox:springfox-boot-starter:3.0.0"
     implementation 'io.springfox:springfox-swagger-ui:3.0.0'
     implementation "io.springfox:springfox-swagger2:3.0.0"
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas', version: '2.7.1'
+    implementation group: 'org.springframework.hateoas', name: 'spring-hateoas', version: '1.5.1'
 
 }
 

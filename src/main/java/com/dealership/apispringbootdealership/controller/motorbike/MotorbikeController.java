@@ -4,13 +4,18 @@ import com.dealership.apispringbootdealership.controller.motorbike.model.Motorbi
 import com.dealership.apispringbootdealership.controller.motorbike.model.MotorbikeControllerResponse;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import static org.springframework.http.HttpStatus.*;
 
 @AllArgsConstructor
@@ -59,6 +64,7 @@ public class MotorbikeController {
     @ResponseStatus(OK)
     @ApiOperation("Retorna uma moto do banco de dados")
     public MotorbikeControllerResponse getById(@PathVariable String id) {
+
         return facade.getById(id);
     }
 
@@ -66,7 +72,12 @@ public class MotorbikeController {
     @ResponseStatus(OK)
     @ApiOperation("Retorna todas as motos do banco de dados")
     public List<MotorbikeControllerResponse> findAll() {
-        return facade.findAll();
+        List<MotorbikeControllerResponse> responses = facade.findAll();
+        for (MotorbikeControllerResponse controllerResponse : responses){
+            String id = controllerResponse.getId();
+            controllerResponse.add(linkTo(methodOn(MotorbikeController.class).getById(id)).withSelfRel());
+        }
+        return responses;
     }
 
     @GetMapping("/read-spring-cookie")
