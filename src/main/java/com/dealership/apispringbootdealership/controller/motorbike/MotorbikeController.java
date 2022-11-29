@@ -4,19 +4,29 @@ import com.dealership.apispringbootdealership.controller.motorbike.model.Motorbi
 import com.dealership.apispringbootdealership.controller.motorbike.model.MotorbikeControllerResponse;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
+import static org.springframework.http.HttpStatus.OK;
 
 @AllArgsConstructor
 @RestController
@@ -34,7 +44,7 @@ public class MotorbikeController {
 
     @PostMapping("/cookies")
     @ApiOperation(value = "Salva um Cookie")
-    public String setCookie(HttpServletResponse response){
+    public String setCookie(HttpServletResponse response) {
         Cookie cookie = new Cookie("id", "1");
         cookie.setMaxAge(7 * 24 * 60 * 60);
         cookie.setDomain("localhost");
@@ -63,17 +73,18 @@ public class MotorbikeController {
     @GetMapping("/{id}")
     @ResponseStatus(OK)
     @ApiOperation("Retorna uma moto do banco de dados")
+    @Cacheable("cacheGetById")
     public MotorbikeControllerResponse getById(@PathVariable String id) {
-
         return facade.getById(id);
     }
 
     @GetMapping
     @ResponseStatus(OK)
     @ApiOperation("Retorna todas as motos do banco de dados")
+    @Cacheable("cacheFindAll")
     public List<MotorbikeControllerResponse> findAll() {
         List<MotorbikeControllerResponse> responses = facade.findAll();
-        for (MotorbikeControllerResponse controllerResponse : responses){
+        for (MotorbikeControllerResponse controllerResponse : responses) {
             String id = controllerResponse.getId();
             controllerResponse.add(linkTo(methodOn(MotorbikeController.class).getById(id)).withSelfRel());
         }

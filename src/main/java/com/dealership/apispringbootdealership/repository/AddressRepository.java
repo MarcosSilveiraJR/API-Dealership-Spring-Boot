@@ -9,5 +9,4 @@ import java.util.List;
 @Repository
 public interface AddressRepository extends MongoRepository<AddressEntity, String> {
     AddressEntity findByCep(String cep);
-
 }
