@@ -1,1 +1,6 @@
-rootProject.name = 'API-Spring-Boot-Dealership'
+rootProject.name = 'dealership-api'
+include 'impl'
+include 'contract'
+include 'integration'
+include 'common'
+
