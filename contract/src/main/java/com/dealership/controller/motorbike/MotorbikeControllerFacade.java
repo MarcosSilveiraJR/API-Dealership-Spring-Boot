@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.List;
 
+import static com.dealership.controller.motorbike.mapper.MotorbikeControllerMapper.INSTANCE;
 import static com.dealership.controller.motorbike.mapper.MotorbikeControllerRequestMapper.toMotorbikeServiceRequest;
 import static com.dealership.controller.motorbike.mapper.MotorbikeControllerResponseMapper.toMotorbikeControllerResponse;
 import static com.dealership.controller.motorbike.mapper.MotorbikeControllerResponseMapper.toMotorbikeControllerResponseList;
@@ -49,12 +50,12 @@ public final class MotorbikeControllerFacade {
 
     public MotorbikeControllerResponse getById(String id) {
         MotorbikeServiceResponse getById = facade.getById(id);
-        return toMotorbikeControllerResponse(getById);
+        return INSTANCE.toMotorbikeControllerResponse(getById);
     }
 
     public List<MotorbikeControllerResponse> getByBrand(String brand) {
         List<MotorbikeServiceResponse> getByBrand = facade.getByBrand(brand);
-        return toMotorbikeControllerResponseList(getByBrand);
+        return INSTANCE.toMotorbikeControllerResponseList(getByBrand);
     }
 
     public List<MotorbikeControllerResponse> findByParams(@Nullable String brand, @Nullable String color, @Nullable String model,
