@@ -26,9 +26,7 @@ import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.NO_CONTENT;
-import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.*;
 
 @AllArgsConstructor
 @RestController
@@ -79,6 +77,7 @@ public class MotorbikeController {
     public MotorbikeControllerResponse getById(@PathVariable String id) {
         return facade.getById(id);
     }
+
     @GetMapping("/get-by-brand")
     @ResponseStatus(OK)
     @ApiOperation("Retorna uma lista motos do banco de dados pela marca")

@@ -25,7 +25,6 @@ public class SwaggerConfig  {
                 .build();
     }
     private ApiInfo apiInfo() {
-
         return new ApiInfoBuilder()
                 .title("SPRING REST API")
                 .description("Documentação da API REST")

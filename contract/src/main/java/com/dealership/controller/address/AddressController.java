@@ -3,7 +3,6 @@ package com.dealership.controller.address;
 import com.dealership.controller.address.model.AddressControllerResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,13 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@AllArgsConstructor
 @RestController
 @Api(value = "Api Rest Dealership")
 @CrossOrigin( origins = "*")
 @RequestMapping("/v1/cep")
 public class AddressController {
-    private AddressFacadeController addressFacade;
+    private final AddressFacadeController addressFacade;
+
+    public AddressController(AddressFacadeController addressFacade) {
+        this.addressFacade = addressFacade;
+    }
 
     @ApiOperation("Busca um cep no site ViaCep")
     @GetMapping("/{cep}")

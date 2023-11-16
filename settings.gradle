@@ -1,6 +1,3 @@
 rootProject.name = 'dealership-api'
-include 'impl'
-include 'contract'
-include 'integration'
-include 'common'
+include 'impl', 'contract', 'integration', 'common'
 

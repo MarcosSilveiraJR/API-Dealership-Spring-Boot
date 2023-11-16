@@ -4,7 +4,6 @@ plugins {
     id 'java'
 }
 
-
 dependencies {
     implementation project(":contract")
     testImplementation project(':contract')
@@ -44,6 +43,8 @@ allprojects {
         implementation 'org.springframework.boot:spring-boot-starter-hateoas:3.0.0'
         implementation 'org.springframework.hateoas:spring-hateoas:1.5.1'
         implementation group: 'net.bytebuddy', name: 'byte-buddy', version: '1.12.19'
+        implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'
+        implementation group: 'com.google.code.gson', name: 'gson', version: '2.10'
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
         annotationProcessor 'org.projectlombok:lombok'

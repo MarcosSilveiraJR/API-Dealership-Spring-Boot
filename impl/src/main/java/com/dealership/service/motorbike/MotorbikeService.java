@@ -111,7 +111,7 @@ public class MotorbikeService  {
     public List<MotorbikeServiceResponse> findByParams(@Nullable String brand, @Nullable String color, @Nullable String model,
                                                       @Nullable BigDecimal price, @Nullable Integer year){
         List<MotorbikeServiceResponse> list = new ArrayList<>();
-        List<MotorbikeEntity> byParams = repository.findByBrandIgnoreCaseAndColorIgnoreCaseAndModelIgnoreCaseAndPriceAndYear(brand,
+        List<MotorbikeEntity> byParams = repository.findAllByBrandIsLikeOrModelIsLikeOrColorIsLikeOrPriceIsLikeOrYearIsLike(brand,
                 color, model, price, year);
         for(MotorbikeEntity entity : byParams){
             MotorbikeEntity motorbikeEntity = new MotorbikeEntity();

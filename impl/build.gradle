@@ -1,4 +1,3 @@
 dependencies {
     implementation project(":integration")
-    implementation project(":impl")
 }

@@ -21,9 +21,9 @@ public interface MotorbikeRepository extends MongoRepository<MotorbikeEntity, St
 
     List<MotorbikeEntity> getMotorbikeEntityByPriceBetweenOrderByPrice(BigDecimal price1, @Nullable BigDecimal price2);
 
-    List<MotorbikeEntity> findByBrandIgnoreCaseAndColorIgnoreCaseAndModelIgnoreCaseAndPriceAndYear(@Nullable String brand,
-                                                                                                   @Nullable String color,
-                                                                                                   @Nullable String model,
-                                                                                                   @Nullable BigDecimal price,
-                                                                                                   @Nullable Integer year);
+    List<MotorbikeEntity> findAllByBrandIsLikeOrModelIsLikeOrColorIsLikeOrPriceIsLikeOrYearIsLike(@Nullable String brand,
+                                                                                                  @Nullable String color,
+                                                                                                  @Nullable String model,
+                                                                                                  @Nullable BigDecimal price,
+                                                                                                  @Nullable Integer year);
 }

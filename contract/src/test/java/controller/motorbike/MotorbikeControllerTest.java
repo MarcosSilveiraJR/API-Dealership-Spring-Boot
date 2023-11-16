@@ -29,7 +29,6 @@ class MotorbikeControllerTest {
     MotorbikeControllerFacade facade;
 
     @Mock
-    @Autowired
     MotorbikeServiceFacade motorbikeServiceFacade;
 
     @Mock

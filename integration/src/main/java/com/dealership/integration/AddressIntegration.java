@@ -11,6 +11,6 @@ public class AddressIntegration {
     private RestTemplate restTemplate;
 
     public AddressIntegrationResponse getCep(String cep) {
-        return restTemplate.getForObject("/ws/" + cep + "/json/", AddressIntegrationResponse.class);
+        return restTemplate.getForObject("/ws/".concat(cep).concat("/json/"), AddressIntegrationResponse.class);
     }
 }

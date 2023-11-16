@@ -13,30 +13,30 @@ import static com.dealership.controller.address.mapper.AddressControllerReponseM
 @Component
 public class AddressFacadeController {
 
-    private final AddressFacade facade;
+    private final AddressFacade addressFacade;
 
-    public AddressFacadeController(AddressFacade facade) {
-        this.facade = facade;
+    public AddressFacadeController(AddressFacade addressFacade) {
+        this.addressFacade = addressFacade;
     }
 
     public AddressControllerResponse saveCep(String cep){
-        AddressIntegrationResponse response = facade.saveCep(cep);
+        AddressIntegrationResponse response = addressFacade.saveCep(cep);
         return toResponseController(response);
     }
 
     public AddressControllerResponse getCep(String cep){
-        return toResponseController(facade.getCep(cep));
+        return toResponseController(addressFacade.getCep(cep));
     }
 
     public AddressControllerResponse findByCep (String cep){
-        return toResponseController(facade.findByCep(cep));
+        return toResponseController(addressFacade.findByCep(cep));
     }
 
     public List<AddressControllerResponse> findAll (){
-        return facade.findAll().stream().map(AddressControllerReponseMapper::toResponseController).toList();
+        return addressFacade.findAll().stream().map(AddressControllerReponseMapper::toResponseController).toList();
     }
 
     public void deleteAll (){
-        facade.deleteAll();
+        addressFacade.deleteAll();
     }
 }
