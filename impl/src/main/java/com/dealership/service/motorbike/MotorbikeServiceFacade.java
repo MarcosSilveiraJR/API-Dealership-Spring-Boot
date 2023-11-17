@@ -1,7 +1,7 @@
 package com.dealership.service.motorbike;
 
-import com.dealership.service.motorbike.model.MotorbikeServiceRequest;
-import com.dealership.service.motorbike.model.MotorbikeServiceResponse;
+import com.dealership.entity.model.motorbike.MotorbikeRequest;
+import com.dealership.entity.model.motorbike.MotorbikeResponse;
 import com.mongodb.lang.Nullable;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -14,46 +14,46 @@ import java.util.List;
 public final class MotorbikeServiceFacade {
     private final MotorbikeService service;
 
-    public MotorbikeServiceResponse save(MotorbikeServiceRequest motorbikeServiceRequest) {
-        return service.save(motorbikeServiceRequest);
+    public MotorbikeResponse save(MotorbikeRequest motorbikeRequest) {
+        return service.save(motorbikeRequest);
     }
 
-    public List<MotorbikeServiceResponse> getByBrand(String brand){
-        return service.getByBrand(brand);
+    public List<MotorbikeResponse> getByBrand(String brand){
+        return service.listByBrand(brand);
     }
 
-    public List<MotorbikeServiceResponse> getByModel(String model){
-        return service.getByModel(model);
+    public List<MotorbikeResponse> getByModel(String model){
+        return service.listByModel(model);
     }
 
-    public List<MotorbikeServiceResponse> getByColor(String color){
-        return service.getByColor(color);
+    public List<MotorbikeResponse> getByColor(String color){
+        return service.listByColor(color);
     }
 
-    public List<MotorbikeServiceResponse> getByPrice(BigDecimal price1, @Nullable BigDecimal price2){
-        return service.getByPrice(price1, price2);
+    public List<MotorbikeResponse> getByPrice(BigDecimal price1, @Nullable BigDecimal price2){
+        return service.listByPrice(price1, price2);
     }
 
-    public List<MotorbikeServiceResponse> getByYear(Integer year){
-        return service.getByYear(year);
+    public List<MotorbikeResponse> getByYear(Integer year){
+        return service.listByYear(year);
     }
 
-    public List<MotorbikeServiceResponse> findByParams(@Nullable String brand, @Nullable String color, @Nullable String model,
+    public List<MotorbikeResponse> findByParams(@Nullable String brand, @Nullable String color, @Nullable String model,
                                                        @Nullable BigDecimal price, @Nullable Integer year) {
-        return service.findByParams(brand, model, color, price, year);
+        return service.find(brand, model, color, price, year);
     }
 
-    public List<MotorbikeServiceResponse> findAll() {
-        return service.findAll();
+    public List<MotorbikeResponse> findAll() {
+        return service.listAll();
     }
 
-    public MotorbikeServiceResponse getById(String id) {
+    public MotorbikeResponse getById(String id) {
         return service.getById(id);
     }
 
-    public MotorbikeServiceResponse update(MotorbikeServiceRequest motorbikeServiceRequest, String id) {
-        MotorbikeServiceResponse byId = service.getById(id);
-        return service.update(motorbikeServiceRequest, byId.getId());
+    public MotorbikeResponse update(MotorbikeRequest motorbikeRequest, String id) {
+        MotorbikeResponse byId = service.getById(id);
+        return service.update(motorbikeRequest, byId.getId());
     }
 
     public void delete(String id) {

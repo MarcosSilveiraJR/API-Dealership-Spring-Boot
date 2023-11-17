@@ -1,7 +1,7 @@
 package com.dealership.controller.motorbike.mapper;
 
 import com.dealership.controller.motorbike.model.MotorbikeControllerResponse;
-import com.dealership.service.motorbike.model.MotorbikeServiceResponse;
+import com.dealership.entity.model.motorbike.MotorbikeResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -12,6 +12,6 @@ public interface MotorbikeControllerMapper {
 
     MotorbikeControllerMapper INSTANCE = Mappers.getMapper(MotorbikeControllerMapper.class);
 
-    MotorbikeControllerResponse toMotorbikeControllerResponse(MotorbikeServiceResponse motorbikeServiceResponse);
-    List<MotorbikeControllerResponse> toMotorbikeControllerResponseList(List<MotorbikeServiceResponse> motorbikeServiceResponse);
+    MotorbikeControllerResponse toMotorbikeControllerResponse(MotorbikeResponse motorbikeServiceResponse);
+    List<MotorbikeControllerResponse> toMotorbikeControllerResponseList(List<MotorbikeResponse> motorbikeServiceResponse);
 }

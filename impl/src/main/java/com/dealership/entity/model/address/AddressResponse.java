@@ -10,10 +10,11 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class AddressResponse {
-    private String cep;
-    private String logradouro;
-    private String complemento;
-    private String bairro;
-    private String localidade;
+    private String id;
+    private String zipCode;
+    private String publicPlace;
+    private String complement;
+    private String neighborhood;
+    private String locality;
     private String uf;
 }

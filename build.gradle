@@ -45,6 +45,7 @@ allprojects {
         implementation group: 'net.bytebuddy', name: 'byte-buddy', version: '1.12.19'
         implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'
         implementation group: 'com.google.code.gson', name: 'gson', version: '2.10'
+        implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:11.1.0'
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
         annotationProcessor 'org.projectlombok:lombok'

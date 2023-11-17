@@ -1,17 +1,13 @@
-package com.dealership.service.motorbike.model;
+package com.dealership.entity.model.motorbikegraphqldata;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Data
-public class MotorbikeServiceRequest {
+@AllArgsConstructor
+public class PostMotorbike {
     private String id;
     private String brand;
     private String model;

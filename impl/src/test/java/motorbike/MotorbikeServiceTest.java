@@ -1,10 +1,10 @@
 package motorbike;
 
 import com.dealership.entity.MotorbikeEntity;
+import com.dealership.entity.model.motorbike.MotorbikeRequest;
+import com.dealership.entity.model.motorbike.MotorbikeResponse;
 import com.dealership.repository.MotorbikeRepository;
 import com.dealership.service.motorbike.MotorbikeService;
-import com.dealership.service.motorbike.model.MotorbikeServiceRequest;
-import com.dealership.service.motorbike.model.MotorbikeServiceResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,9 +17,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class MotorbikeServiceTest {
@@ -41,7 +39,7 @@ class MotorbikeServiceTest {
                 .year(2012)
                 .build();
 
-        MotorbikeServiceRequest request = MotorbikeServiceRequest.builder()
+        MotorbikeRequest request = MotorbikeRequest.builder()
                 .id("6255a099c35196358df03b44")
                 .brand("Honda")
                 .model("CB 600")
@@ -50,7 +48,7 @@ class MotorbikeServiceTest {
                 .year(2012)
                 .build();
 
-        MotorbikeServiceResponse expected = MotorbikeServiceResponse.builder()
+        MotorbikeResponse expected = MotorbikeResponse.builder()
                 .id("6255a099c35196358df03b44")
                 .brand("Honda")
                 .model("CB 600")
@@ -60,7 +58,7 @@ class MotorbikeServiceTest {
                 .build();
 
         when(repository.save(entity)).thenReturn(entity);
-        MotorbikeServiceResponse actual = service.save(request);
+        MotorbikeResponse actual = service.save(request);
         assertEquals(expected, actual);
     }
 
@@ -75,7 +73,7 @@ class MotorbikeServiceTest {
                 .year(2012)
                 .build();
 
-        MotorbikeServiceRequest request = MotorbikeServiceRequest.builder()
+        MotorbikeRequest request = MotorbikeRequest.builder()
                 .id("6255a099c35196358df03b44")
                 .brand("Honda")
                 .model("CB 600")
@@ -84,7 +82,7 @@ class MotorbikeServiceTest {
                 .year(2012)
                 .build();
 
-        MotorbikeServiceResponse expected = MotorbikeServiceResponse.builder()
+        MotorbikeResponse expected = MotorbikeResponse.builder()
                 .id("6255a099c35196358df03b44")
                 .brand("Honda")
                 .model("CB 600")
@@ -95,7 +93,7 @@ class MotorbikeServiceTest {
 
         when(repository.save(entity)).thenReturn(entity);
         when(repository.findById("6255a099c35196358df03b44")).thenReturn(Optional.of(entity));
-        MotorbikeServiceResponse actual = service.update(request, "6255a099c35196358df03b44");
+        MotorbikeResponse actual = service.update(request, "6255a099c35196358df03b44");
         assertEquals(expected, actual);
 
 
@@ -120,11 +118,11 @@ class MotorbikeServiceTest {
                 .year(2012)
                 .build();
 
-        MotorbikeServiceRequest request = MotorbikeServiceRequest.builder()
+        MotorbikeRequest request = MotorbikeRequest.builder()
                 .id("6255a099c35196358df03b44")
                 .build();
 
-        MotorbikeServiceResponse expected = MotorbikeServiceResponse.builder()
+        MotorbikeResponse expected = MotorbikeResponse.builder()
                 .id("6255a099c35196358df03b44")
                 .brand("Honda")
                 .model("CB 600")
@@ -134,7 +132,7 @@ class MotorbikeServiceTest {
                 .build();
 
         when(repository.findById(request.toString())).thenReturn(Optional.of(entity));
-        MotorbikeServiceResponse actual = service.getById(request.toString());
+        MotorbikeResponse actual = service.getById(request.toString());
         assertNotNull(actual);
         assertEquals(expected, actual);
     }
@@ -150,7 +148,7 @@ class MotorbikeServiceTest {
                 .year(2012)
                 .build());
 
-        List<MotorbikeServiceResponse> expected = List.of(MotorbikeServiceResponse.builder()
+        List<MotorbikeResponse> expected = List.of(MotorbikeResponse.builder()
                 .id("6255a099c35196358df03b44")
                 .brand("Honda")
                 .model("CB 600")
@@ -160,7 +158,7 @@ class MotorbikeServiceTest {
                 .build());
 
         when(repository.findAll()).thenReturn(entities);
-        List<MotorbikeServiceResponse> actual = service.findAll();
+        List<MotorbikeResponse> actual = service.listAll();
         assertEquals(expected, actual);
     }
 

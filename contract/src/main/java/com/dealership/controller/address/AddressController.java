@@ -14,8 +14,8 @@ import java.util.List;
 
 @RestController
 @Api(value = "Api Rest Dealership")
-@CrossOrigin( origins = "*")
-@RequestMapping("/v1/cep")
+@CrossOrigin(origins = "*")
+@RequestMapping("/address")
 public class AddressController {
     private final AddressFacadeController addressFacade;
 
@@ -30,13 +30,13 @@ public class AddressController {
     }
 
     @ApiOperation("Busca um cep salvo no banco de dados")
-    @GetMapping("/id/{cep}")
+    @GetMapping("/find/{cep}")
     public AddressControllerResponse findCep(@PathVariable String cep){
         return addressFacade.findByCep(cep);
     }
 
     @ApiOperation("Busca todos os cep salvos no banco de dados")
-    @GetMapping("/all")
+    @GetMapping()
     public List<AddressControllerResponse> findAll(){
         return addressFacade.findAll();
     }
@@ -48,7 +48,7 @@ public class AddressController {
     }
 
     @ApiOperation("Deleta todos os ceps salvos no banco de dados")
-    @DeleteMapping("/del")
+    @DeleteMapping()
     public void deleteAll(){
         addressFacade.deleteAll();
     }

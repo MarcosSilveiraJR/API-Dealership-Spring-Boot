@@ -1,13 +1,13 @@
 package com.dealership.controller.motorbike.mapper;
 
 import com.dealership.controller.motorbike.model.MotorbikeControllerResponse;
-import com.dealership.service.motorbike.model.MotorbikeServiceResponse;
+import com.dealership.entity.model.motorbike.MotorbikeResponse;
 
 import java.util.List;
 
 public class MotorbikeControllerResponseMapper {
 
-    public static MotorbikeControllerResponse toMotorbikeControllerResponse(MotorbikeServiceResponse motorbikeServiceResponse) {
+    public static MotorbikeControllerResponse toMotorbikeControllerResponse(MotorbikeResponse motorbikeServiceResponse) {
         return MotorbikeControllerResponse.builder()
                 .id(motorbikeServiceResponse.getId())
                 .brand(motorbikeServiceResponse.getBrand())
@@ -18,7 +18,7 @@ public class MotorbikeControllerResponseMapper {
                 .build();
     }
 
-    public static List<MotorbikeControllerResponse> toMotorbikeControllerResponseList(List<MotorbikeServiceResponse> motorbikeServiceResponse) {
+    public static List<MotorbikeControllerResponse> toMotorbikeControllerResponseList(List<MotorbikeResponse> motorbikeServiceResponse) {
         return motorbikeServiceResponse.stream().map(motorbikeServiceResponse1 ->
                 MotorbikeControllerResponse.builder()
                         .id(motorbikeServiceResponse1.getId())

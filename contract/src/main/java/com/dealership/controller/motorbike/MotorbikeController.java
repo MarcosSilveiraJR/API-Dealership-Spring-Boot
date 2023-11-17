@@ -30,7 +30,7 @@ import static org.springframework.http.HttpStatus.*;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/v1/motorbike")
+@RequestMapping("/motorbikes")
 public class MotorbikeController {
 
     private final MotorbikeControllerFacade facade;
@@ -40,19 +40,6 @@ public class MotorbikeController {
     @ResponseStatus(CREATED)
     public MotorbikeControllerResponse save(@RequestBody @Valid MotorbikeControllerRequest motorbikeControllerRequest) {
         return facade.save(motorbikeControllerRequest);
-    }
-
-    @PostMapping("/cookies")
-    @ApiOperation(value = "Salva um Cookie")
-    public String setCookie(HttpServletResponse response) {
-        Cookie cookie = new Cookie("id", "1");
-        cookie.setMaxAge(7 * 24 * 60 * 60);
-        cookie.setDomain("localhost");
-        cookie.setHttpOnly(true);
-        cookie.setSecure(true);
-        cookie.setPath("/");
-        response.addCookie(cookie);
-        return "Cookie adicionado!";
     }
 
     @PutMapping("/{id}")
@@ -78,7 +65,7 @@ public class MotorbikeController {
         return facade.getById(id);
     }
 
-    @GetMapping("/get-by-brand")
+    @GetMapping("/brands")
     @ResponseStatus(OK)
     @ApiOperation("Retorna uma lista motos do banco de dados pela marca")
     @Cacheable("cacheGetByBrand")
@@ -86,7 +73,7 @@ public class MotorbikeController {
         return facade.getByBrand(brand);
     }
 
-    @GetMapping("/get-by-model")
+    @GetMapping("/models")
     @ResponseStatus(OK)
     @ApiOperation("Retorna uma lista motos do banco de dados pelo model")
     @Cacheable("cacheGetByModel")
@@ -94,7 +81,7 @@ public class MotorbikeController {
         return facade.getByModel(model);
     }
 
-    @GetMapping("/get-by-color")
+    @GetMapping("/colors")
     @ResponseStatus(OK)
     @ApiOperation("Retorna uma lista motos do banco de dados pela cor")
     @Cacheable("cacheGetColor")
@@ -102,7 +89,7 @@ public class MotorbikeController {
         return facade.getByColor(color);
     }
 
-    @GetMapping("/get-by-price")
+    @GetMapping("/prices")
     @ResponseStatus(OK)
     @ApiOperation("Retorna uma lista motos do banco de dados pelo preço")
     @Cacheable("cacheGetByPrice")
@@ -110,7 +97,7 @@ public class MotorbikeController {
         return facade.getByPrice(price1, price2);
     }
 
-    @GetMapping("/get-by-year")
+    @GetMapping("/years")
     @ResponseStatus(OK)
     @ApiOperation("Retorna uma lista motos do banco de dados pelo ano")
     @Cacheable("cacheGetByYear")
@@ -118,7 +105,7 @@ public class MotorbikeController {
         return facade.getByYear(year);
     }
 
-    @GetMapping("/find-motorbike")
+    @GetMapping("/motorbikes")
     @ResponseStatus(OK)
     @ApiOperation("Retorna uma lista motos do banco de dados pelo pelos parâmetros de busca")
     @Cacheable("cacheFindByParams")
@@ -141,7 +128,20 @@ public class MotorbikeController {
         return responses;
     }
 
-    @GetMapping("/read-spring-cookie")
+    @PostMapping("/cookies")
+    @ApiOperation(value = "Salva um Cookie")
+    public String setCookie(HttpServletResponse response) {
+        Cookie cookie = new Cookie("id", "1");
+        cookie.setMaxAge(7 * 24 * 60 * 60);
+        cookie.setDomain("localhost");
+        cookie.setHttpOnly(true);
+        cookie.setSecure(true);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        return "Cookie adicionado!";
+    }
+
+    @GetMapping("/cookies")
     @ApiOperation("Retorna o cookie salvo")
     public String readCookie(
             @CookieValue(name = "user-id", defaultValue = "default-user-id") String userId) {

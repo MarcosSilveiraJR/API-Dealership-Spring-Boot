@@ -1,17 +1,14 @@
 package com.dealership.service.address;
 
 import com.dealership.entity.AddressEntity;
+import com.dealership.entity.model.address.AddressResponse;
+import com.dealership.entity.model.mapper.AddressMapper;
 import com.dealership.integration.AddressIntegration;
-import com.dealership.integration.model.AddressIntegrationResponse;
 import com.dealership.repository.AddressRepository;
-import com.dealership.service.address.mapper.AddressServiceResponseMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static com.dealership.service.address.mapper.AddressServiceResponseMapper.toAddressResponse;
-import static com.dealership.service.address.mapper.AddressServiceResponseMapper.toEntity;
 
 
 @AllArgsConstructor
@@ -20,25 +17,26 @@ public class AddressService {
 
     private final AddressIntegration addressIntegration;
     private final AddressRepository repository;
+    private final AddressMapper addressMapper;
 
-    public AddressIntegrationResponse saveCep(String cep) {
-        AddressEntity response = toEntity(getCep(cep));
-        repository.save(response);
-        return toAddressResponse(response);
+    public AddressResponse saveCep(String cep) {
+        AddressResponse response = getCep(cep);
+        repository.save(addressMapper.toAddressEntity(response));
+        return response;
     }
 
-    public AddressIntegrationResponse getCep(String cep) {
-        return addressIntegration.getCep(cep);
+    public AddressResponse getCep(String cep) {
+        return addressMapper.fromAddressIntegrationToAddressResponse(addressIntegration.getCep(cep));
 
     }
 
-    public AddressIntegrationResponse findByCep(String cep) {
+    public AddressResponse findByCep(String cep) {
         AddressEntity response = repository.findByCep(cep);
-        return toAddressResponse(response);
+        return addressMapper.toAddressResponse(response);
     }
 
-    public List<AddressIntegrationResponse> findAll() {
-        return repository.findAll().stream().map(AddressServiceResponseMapper::toAddressResponse)
+    public List<AddressResponse> findAll() {
+        return repository.findAll().stream().map(addressMapper::toAddressResponse)
                 .toList();
     }
 

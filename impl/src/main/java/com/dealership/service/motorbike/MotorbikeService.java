@@ -1,143 +1,130 @@
 package com.dealership.service.motorbike;
 
 import com.dealership.entity.MotorbikeEntity;
+import com.dealership.entity.model.mapper.MotorbikeMapper;
+import com.dealership.entity.model.motorbike.MotorbikeRequest;
+import com.dealership.entity.model.motorbike.MotorbikeResponse;
 import com.dealership.repository.MotorbikeRepository;
-import com.dealership.service.motorbike.mapper.MotorbikeServiceResponseMapper;
-import com.dealership.service.motorbike.model.MotorbikeServiceRequest;
-import com.dealership.service.motorbike.model.MotorbikeServiceResponse;
 import com.mongodb.lang.Nullable;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static com.dealership.service.motorbike.mapper.MotorbikeServiceRequestMapper.toEntityMotorbike;
-import static com.dealership.service.motorbike.mapper.MotorbikeServiceResponseMapper.toMotorbikeServiceResponse;
 
 
 @AllArgsConstructor
 @Service
 public class MotorbikeService  {
 
-    public final MotorbikeRepository repository;
+    private final MotorbikeRepository repository;
+    private final MotorbikeMapper motorbikeMapper;
 
-    public MotorbikeServiceResponse save(MotorbikeServiceRequest motorbikeServiceRequest) {
-        return toMotorbikeServiceResponse(repository.save(toEntityMotorbike(motorbikeServiceRequest)));
+    public MotorbikeResponse save(MotorbikeRequest motorbikeRequest) {
+        return motorbikeMapper.toMotorbikeResponse(repository.save(motorbikeMapper.toMotorbikeEntity(motorbikeRequest)));
     }
 
-    public MotorbikeServiceResponse getById(String id) {
+    public MotorbikeResponse getById(String id) {
         MotorbikeEntity motorbikeEntity = repository.findById(id)
-                .orElseThrow(() -> null);
-        return toMotorbikeServiceResponse(motorbikeEntity);
+                .orElseThrow(() -> new RuntimeException(String.format("ID %s não encontrado", id)));
+        return motorbikeMapper.toMotorbikeResponse((motorbikeEntity));
     }
 
-    public List<MotorbikeServiceResponse> getByBrand(String brand){
-        List<MotorbikeServiceResponse> list = new ArrayList<>();
-        List<MotorbikeEntity> byBrand = repository.getByBrandIgnoreCase(brand);
-        for(MotorbikeEntity entity : byBrand){
-            MotorbikeEntity motorbikeEntity = new MotorbikeEntity();
-            motorbikeEntity.setBrand(entity.getBrand());
-            motorbikeEntity.setModel(entity.getModel());
-            motorbikeEntity.setColor(entity.getColor());
-            motorbikeEntity.setPrice(entity.getPrice());
-            motorbikeEntity.setYear(entity.getYear());
-            list.add(toMotorbikeServiceResponse(motorbikeEntity));
-        }
-        return list;
+    public List<MotorbikeResponse> listByBrand(String brand){
+        List<MotorbikeEntity> motorbikeEntityList = repository.getByBrandIgnoreCase(brand);
+        return motorbikeEntityList.stream().map(motorbikeEntity -> {
+            MotorbikeEntity entity = new MotorbikeEntity();
+            entity.setBrand(motorbikeEntity.getBrand());
+            entity.setModel(motorbikeEntity.getModel());
+            entity.setColor(motorbikeEntity.getColor());
+            entity.setPrice(motorbikeEntity.getPrice());
+            entity.setYear(motorbikeEntity.getYear());
+            return motorbikeMapper.toMotorbikeResponse((entity));
+        }).collect(Collectors.toList());
     }
 
-    public List<MotorbikeServiceResponse> getByModel(String model){
-        List<MotorbikeServiceResponse> list = new ArrayList<>();
-        List<MotorbikeEntity> byModel = repository.getByModelIgnoreCase(model);
-        for(MotorbikeEntity entity : byModel){
-            MotorbikeEntity motorbikeEntity = new MotorbikeEntity();
-            motorbikeEntity.setBrand(entity.getBrand());
-            motorbikeEntity.setModel(entity.getModel());
-            motorbikeEntity.setColor(entity.getColor());
-            motorbikeEntity.setPrice(entity.getPrice());
-            motorbikeEntity.setYear(entity.getYear());
-            list.add(toMotorbikeServiceResponse(motorbikeEntity));
-        }
-        return list;
+    public List<MotorbikeResponse> listByModel(String model){
+        List<MotorbikeEntity> motorbikeEntities = repository.getByModelIgnoreCase(model);
+        return motorbikeEntities.stream().map(motorbikeEntity -> {
+            MotorbikeEntity motorbike = new MotorbikeEntity();
+            motorbike.setBrand(motorbikeEntity.getBrand());
+            motorbike.setModel(motorbikeEntity.getModel());
+            motorbike.setColor(motorbikeEntity.getColor());
+            motorbike.setPrice(motorbikeEntity.getPrice());
+            motorbike.setYear(motorbikeEntity.getYear());
+            return motorbikeMapper.toMotorbikeResponse((motorbikeEntity));
+        }).collect(Collectors.toList());
     }
 
-    public List<MotorbikeServiceResponse> getByColor(String color){
-        List<MotorbikeServiceResponse> list = new ArrayList<>();
-        List<MotorbikeEntity> byColor = repository.getByColorIgnoreCase(color);
-        for(MotorbikeEntity entity : byColor){
-            MotorbikeEntity motorbikeEntity = new MotorbikeEntity();
-            motorbikeEntity.setBrand(entity.getBrand());
-            motorbikeEntity.setModel(entity.getModel());
-            motorbikeEntity.setColor(entity.getColor());
-            motorbikeEntity.setPrice(entity.getPrice());
-            motorbikeEntity.setYear(entity.getYear());
-            list.add(toMotorbikeServiceResponse(motorbikeEntity));
-        }
-        return list;
+    public List<MotorbikeResponse> listByColor(String color) {
+        List<MotorbikeEntity> motorbikeEntityList = repository.getByColorIgnoreCase(color);
+        return motorbikeEntityList.stream().map(motorbikeEntity -> {
+            MotorbikeEntity motorbike = new MotorbikeEntity();
+            motorbike.setBrand(motorbikeEntity.getBrand());
+            motorbike.setModel(motorbikeEntity.getModel());
+            motorbike.setColor(motorbikeEntity.getColor());
+            motorbike.setPrice(motorbikeEntity.getPrice());
+            motorbike.setYear(motorbikeEntity.getYear());
+            return motorbikeMapper.toMotorbikeResponse((motorbikeEntity));
+        }).collect(Collectors.toList());
     }
 
-    public List<MotorbikeServiceResponse> getByPrice(BigDecimal price1, @Nullable BigDecimal price2){
-        List<MotorbikeServiceResponse> list = new ArrayList<>();
-        List<MotorbikeEntity> byPrice = repository.getMotorbikeEntityByPriceBetweenOrderByPrice(price1, price2);
-        for(MotorbikeEntity entity : byPrice){
-            MotorbikeEntity motorbikeEntity = new MotorbikeEntity();
-            motorbikeEntity.setBrand(entity.getBrand());
-            motorbikeEntity.setModel(entity.getModel());
-            motorbikeEntity.setColor(entity.getColor());
-            motorbikeEntity.setPrice(entity.getPrice());
-            motorbikeEntity.setYear(entity.getYear());
-            list.add(toMotorbikeServiceResponse(motorbikeEntity));
-        }
-        return list;
+    public List<MotorbikeResponse> listByPrice(BigDecimal price1, @Nullable BigDecimal price2){
+        List<MotorbikeEntity> motorbikeEntityList = repository.getMotorbikeEntityByPriceBetweenOrderByPrice(price1, price2);
+        return motorbikeEntityList.stream().map(motorbikeEntity -> {
+            MotorbikeEntity motorbike = new MotorbikeEntity();
+            motorbike.setBrand(motorbikeEntity.getBrand());
+            motorbike.setModel(motorbikeEntity.getModel());
+            motorbike.setColor(motorbikeEntity.getColor());
+            motorbike.setPrice(motorbikeEntity.getPrice());
+            motorbike.setYear(motorbikeEntity.getYear());
+            return motorbikeMapper.toMotorbikeResponse((motorbikeEntity));
+        }).collect(Collectors.toList());
     }
 
-    public List<MotorbikeServiceResponse> getByYear(Integer year){
-        List<MotorbikeServiceResponse> list = new ArrayList<>();
-        List<MotorbikeEntity> byYear = repository.getByYear(year);
-        for(MotorbikeEntity entity : byYear){
-            MotorbikeEntity motorbikeEntity = new MotorbikeEntity();
-            motorbikeEntity.setBrand(entity.getBrand());
-            motorbikeEntity.setModel(entity.getModel());
-            motorbikeEntity.setColor(entity.getColor());
-            motorbikeEntity.setPrice(entity.getPrice());
-            motorbikeEntity.setYear(entity.getYear());
-            list.add(toMotorbikeServiceResponse(motorbikeEntity));
-        }
-        return list;
+    public List<MotorbikeResponse> listByYear(Integer year){
+        List<MotorbikeEntity> motorbikeEntityList = repository.getByYear(year);
+        return motorbikeEntityList.stream().map(motorbikeEntity -> {
+            MotorbikeEntity motorbike = new MotorbikeEntity();
+            motorbike.setBrand(motorbikeEntity.getBrand());
+            motorbike.setModel(motorbikeEntity.getModel());
+            motorbike.setColor(motorbikeEntity.getColor());
+            motorbike.setPrice(motorbikeEntity.getPrice());
+            motorbike.setYear(motorbikeEntity.getYear());
+            return motorbikeMapper.toMotorbikeResponse((motorbikeEntity));
+        }).collect(Collectors.toList());
     }
 
-    public List<MotorbikeServiceResponse> findByParams(@Nullable String brand, @Nullable String color, @Nullable String model,
-                                                      @Nullable BigDecimal price, @Nullable Integer year){
-        List<MotorbikeServiceResponse> list = new ArrayList<>();
-        List<MotorbikeEntity> byParams = repository.findAllByBrandIsLikeOrModelIsLikeOrColorIsLikeOrPriceIsLikeOrYearIsLike(brand,
+    public List<MotorbikeResponse> find(@Nullable String brand, @Nullable String color, @Nullable String model,
+                                        @Nullable BigDecimal price, @Nullable Integer year){
+        List<MotorbikeEntity> motorbikeEntityList = repository.findAllByBrandIsLikeOrModelIsLikeOrColorIsLikeOrPriceIsLikeOrYearIsLike(brand,
                 color, model, price, year);
-        for(MotorbikeEntity entity : byParams){
-            MotorbikeEntity motorbikeEntity = new MotorbikeEntity();
-            motorbikeEntity.setBrand(entity.getBrand());
-            motorbikeEntity.setModel(entity.getModel());
-            motorbikeEntity.setColor(entity.getColor());
-            motorbikeEntity.setPrice(entity.getPrice());
-            motorbikeEntity.setYear(entity.getYear());
-            list.add(toMotorbikeServiceResponse(motorbikeEntity));
-        }
-        return list;
+        return motorbikeEntityList.stream().map(motorbikeEntity -> {
+            MotorbikeEntity motorbike = new MotorbikeEntity();
+            motorbike.setBrand(motorbikeEntity.getBrand());
+            motorbike.setModel(motorbikeEntity.getModel());
+            motorbike.setColor(motorbikeEntity.getColor());
+            motorbike.setPrice(motorbikeEntity.getPrice());
+            motorbike.setYear(motorbikeEntity.getYear());
+            return motorbikeMapper.toMotorbikeResponse((motorbikeEntity));
+        }).collect(Collectors.toList());
     }
 
-    public List<MotorbikeServiceResponse> findAll() {
+    public List<MotorbikeResponse> listAll() {
         return repository.findAll().stream()
-                .map(MotorbikeServiceResponseMapper::toMotorbikeServiceResponse)
+                .map(motorbikeMapper::toMotorbikeResponse)
                 .toList();
     }
 
-    public MotorbikeServiceResponse update(MotorbikeServiceRequest motorbikeServiceRequest, String id) {
+    public MotorbikeResponse update(MotorbikeRequest motorbikeRequest, String id) {
         MotorbikeEntity motorbikeEntitySave = repository.findById(id)
-                .orElseThrow(() -> null);
-        MotorbikeEntity motorbikeEntity = toEntityMotorbike(motorbikeServiceRequest);
-        motorbikeServiceRequest.setId(motorbikeEntitySave.getId());
+                .orElseThrow(() -> new RuntimeException(String.format("ID %s não encontrado", id)));
+        MotorbikeEntity motorbikeEntity = motorbikeMapper.toMotorbikeEntity(motorbikeRequest);
+        motorbikeRequest.setId(motorbikeEntitySave.getId());
         MotorbikeEntity save = repository.save(motorbikeEntity);
-        return toMotorbikeServiceResponse(save);
+        return motorbikeMapper.toMotorbikeResponse((save));
     }
 
     public void delete(String id) {

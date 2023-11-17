@@ -18,14 +18,14 @@ public class AddressEntity {
     @Id
     private String id;
     @NotBlank
-    private String cep;
+    private String zipCode;
     @NotBlank
-    private String logradouro;
-    private String complemento;
+    private String publicPlace;
+    private String complement;
     @NotBlank
-    private String bairro;
+    private String neighborhood;
     @NotBlank
-    private String localidade;
+    private String locality;
     @NotBlank
     private String uf;
 

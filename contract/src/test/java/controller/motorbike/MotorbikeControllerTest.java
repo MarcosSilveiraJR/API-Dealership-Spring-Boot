@@ -4,14 +4,13 @@ import com.dealership.controller.motorbike.MotorbikeController;
 import com.dealership.controller.motorbike.MotorbikeControllerFacade;
 import com.dealership.controller.motorbike.model.MotorbikeControllerRequest;
 import com.dealership.controller.motorbike.model.MotorbikeControllerResponse;
+import com.dealership.entity.model.motorbike.MotorbikeRequest;
+import com.dealership.entity.model.motorbike.MotorbikeResponse;
 import com.dealership.service.motorbike.MotorbikeServiceFacade;
-import com.dealership.service.motorbike.model.MotorbikeServiceRequest;
-import com.dealership.service.motorbike.model.MotorbikeServiceResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 
@@ -35,9 +34,9 @@ class MotorbikeControllerTest {
     MotorbikeControllerResponse response;
 
     @Mock
-    MotorbikeServiceRequest request;
+    MotorbikeRequest request;
 
-    MotorbikeServiceResponse motorbikeServiceResponse = new MotorbikeServiceResponse("1", "kk", "jj",
+    MotorbikeResponse motorbikeServiceResponse = new MotorbikeResponse("1", "kk", "jj",
             "dd", new BigDecimal(10.0), 10);
 
 
